@@ -26,7 +26,8 @@ from googleapiclient.discovery import build
 from oauth2client import file, client, tools
 
 
-FILENAME = 'config.json'  # Should be in same directory as this file
+CONFIG_FILENAME = 'config.json'  # Should be in same directory as this file
+CLASSIFICATIONS_FILENAME = 'classifications.json'  # Should be in same directory as this file
 SCOPES = 'https://www.googleapis.com/auth/spreadsheets'  # If modifying these scopes, delete the file token.json
 RANGE_TO_CHECK = timedelta(days=7 * 4)  # 4 weeks
 
@@ -35,7 +36,7 @@ class ConfigData:
   @staticmethod
   def parse():
     current_path = os.path.dirname(__file__)
-    config_filename = os.path.join(current_path, FILENAME)
+    config_filename = os.path.join(current_path, CONFIG_FILENAME)
     parsed_json = json.load(open(config_filename))
 
     return_value = ConfigData()
@@ -45,9 +46,83 @@ class ConfigData:
     return_value.last4 = parsed_json.pop('last4')
 
     if parsed_json:
-      print('WARNING: Unexpected keys in %s: %s' % (FILENAME, sorted(parsed_json.keys())))
+      print('WARNING: Unexpected keys in %s: %s' % (CONFIG_FILENAME, sorted(parsed_json.keys())))
 
     return return_value
+
+
+class ClassificationType:
+  FULL = 'full'
+  PREFIX = 'prefix'
+
+
+class Classification:
+  @staticmethod
+  def parse_single(json_entry):
+    classification_type = json_entry.get('type')
+    if classification_type not in (ClassificationType.FULL, ClassificationType.PREFIX):
+      print('ERROR: Unrecognized classification type in %s' % json_entry)
+      return None
+
+    classification_match = json_entry.get('match')
+    if not classification_match:
+      print('ERROR: Missing classification match in %s' % json_entry)
+      return None
+
+    classification_category = json_entry.get('category')
+    if not classification_category:
+      print('ERROR: Missing classification category in %s' % json_entry)
+      return None
+
+    classification_quarter = json_entry.get('quarter')
+    if classification_quarter and classification_quarter != 'auto':  # Right now this can be missing or 'auto'
+      print('ERROR: Unrecognized classification quarter in %s' % json_entry)
+      return None
+
+    classification_subcategory = json_entry.get('subcategory') or ''  # Optional
+
+    return_value = Classification()
+    return_value.type = classification_type
+    return_value.match = classification_match
+    return_value.category = classification_category
+    return_value.subcategory = classification_subcategory
+    return_value.quarter = classification_quarter
+
+    return return_value
+
+  @staticmethod
+  def parse():
+    current_path = os.path.dirname(__file__)
+    classifications_filename = os.path.join(current_path, CLASSIFICATIONS_FILENAME)
+    parsed_json = json.load(open(classifications_filename))
+
+    return_value = []
+    for json_entry in parsed_json:
+      classification = Classification.parse_single(json_entry)
+      if classification:
+        return_value.append(classification)
+
+    return return_value
+
+  @staticmethod
+  def find(classifications, description):
+    def normalize_string(s):
+      return s.lower().strip()
+
+    normalized_description = normalize_string(description)
+
+    full_match_classifications = [classification for classification in classifications if classification.type == ClassificationType.FULL]
+    prefix_classifications = [classification for classification in classifications if classification.type == ClassificationType.PREFIX]
+
+    for classification in full_match_classifications:
+      if normalized_description == normalize_string(classification.match):
+        return classification
+
+    for classification in prefix_classifications:
+      if normalized_description.startswith(normalize_string(classification.match)):
+        return classification
+
+    return None
 
 
 def get_sheets_service():
@@ -216,12 +291,12 @@ def get_missing_transactions(chase_transactions, spreadsheet_transactions):
   return final_missing_transactions
 
 
-def add_transactions_to_spreadsheet(config_data, service, transactions_to_add, chase_transactions, spreadsheet_transactions):
+def add_transactions_to_spreadsheet(config_data, service, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications):
   requests = []
   for transaction_index, transaction in enumerate(transactions_to_add):
     row_number = determine_row_number_for_transaction(transaction, chase_transactions, spreadsheet_transactions)
     row_number += transaction_index  # Take into account rows we've already added
-    requests += get_spreadsheet_requests_for_transaction(config_data, service, transaction, row_number)
+    requests += get_spreadsheet_requests_for_transaction(config_data, service, transaction, row_number, classifications)
 
   body = {
     'requests': requests,
@@ -244,8 +319,9 @@ def determine_row_number_for_transaction(transaction, chase_transactions, spread
   return row_number
 
 
-def get_spreadsheet_requests_for_transaction(config_data, service, transaction, row_number):
+def get_spreadsheet_requests_for_transaction(config_data, service, transaction, row_number, classifications):
   transaction_date, amount, description = transaction
+  classification = Classification.find(classifications, description)
 
   sheet_id = get_sheet_id(config_data, service)
 
@@ -294,6 +370,52 @@ def get_spreadsheet_requests_for_transaction(config_data, service, transaction, 
     },
   ]
 
+  if classification:
+    if classification.quarter == 'auto':
+      quarter_int = (transaction_date.month + 2) // 3
+      quarter_value = '%d Q%d' % (transaction_date.year, quarter_int)
+    else:
+      quarter_value = ''
+
+    row_data.append({
+      'userEnteredValue': {
+        'stringValue': quarter_value,
+      },
+      'userEnteredFormat': {
+        'textFormat': {
+          'fontFamily': 'Arial',
+          'fontSize': 10,
+          'bold': True,  # Bold to make it clear what is "new"
+        },
+      },
+    })
+    row_data.append({
+      'userEnteredValue': {
+        'stringValue': classification.category,
+      },
+      'userEnteredFormat': {
+        'textFormat': {
+          'fontFamily': 'Arial',
+          'fontSize': 10,
+          'bold': True,  # Bold to make it clear what is "new"
+        },
+      },
+    })
+    if classification.subcategory:
+      row_data.append({
+        'userEnteredValue': {
+          'stringValue': classification.subcategory,
+        },
+        'userEnteredFormat': {
+          'textFormat': {
+            'fontFamily': 'Arial',
+            'fontSize': 10,
+            'bold': True,  # Bold to make it clear what is "new"
+          },
+        },
+      })
+
+
   insert_row_request = {
     'insertDimension': {
       'range': {
@@ -340,6 +462,8 @@ def get_oldest_transaction_day(transactions):
 
 def main():
   config_data = ConfigData.parse()
+  classifications = Classification.parse()
+
   chase_csv_filename = get_chase_csv_filename_or_abort(config_data)
   chase_transactions = get_chase_csv_transactions(chase_csv_filename)
 
@@ -349,7 +473,7 @@ def main():
   transactions_to_add = get_missing_transactions(chase_transactions, spreadsheet_transactions)
   if transactions_to_add:
     print('Adding %d new transactions' % len(transactions_to_add))
-    add_transactions_to_spreadsheet(config_data, service, transactions_to_add, chase_transactions, spreadsheet_transactions)
+    add_transactions_to_spreadsheet(config_data, service, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications)
     print('Success! Oldest added day is: %s' % get_oldest_transaction_day(transactions_to_add).strftime('%B %-d, %Y'))
   else:
     print('No new transactions to add')

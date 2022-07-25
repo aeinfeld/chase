@@ -1,0 +1,117 @@
+[
+    {
+        "type": "prefix",
+        "match": "BURGER KING",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "BWW DALY CITY 424",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "CHIPOTLE",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "HABIT DALY CITY #103",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "HOME CHEF",
+        "category": "Grocery",
+        "subcategory": "Delivery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "SQ *THE LITTLE CHIHUAHUA",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "LITTLE ORIGINAL JOES",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "LUPA",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "MCDONALD'S",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "MIXT VALENCIA ONLINE",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "MOLLIE STONES",
+        "category": "Grocery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "MONZA PIZZERIA",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "NOAHMOBILEAPP",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "PEETSCOFFEE/MIGHTYLEAF",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "Prime Video",
+        "category": "Movie Rentals & Streaming",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "SAFEWAY",
+        "category": "Grocery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "Subway 56406",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "WENDYS",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "WIN GARDEN",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    }
+]
