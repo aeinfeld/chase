@@ -1,7 +1,25 @@
 [
     {
         "type": "prefix",
+        "match": "8CHICK-FIL-A",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "BEEP`S BURGERS-SF",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
         "match": "BURGER KING",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "BURSA RESTAURANT INC",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
@@ -19,6 +37,26 @@
     },
     {
         "type": "full",
+        "match": "DD DOORDASH SUSIECAKE",
+        "category": "Eating Out/Take Out",
+        "subcategory": "Delivery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "DD *KUNGFOOD",
+        "category": "Eating Out/Take Out",
+        "subcategory": "Delivery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "FASTRAK CSC",
+        "category": "Car- Tolls",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "HABIT DALY CITY #103",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -28,6 +66,18 @@
         "match": "HOME CHEF",
         "category": "Grocery",
         "subcategory": "Delivery",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "HLU*Hulu",
+        "category": "Movie Rentals & Streaming",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "JOES WESTSIDE LP",
+        "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
     {
@@ -73,8 +123,20 @@
         "quarter": "auto"
     },
     {
+        "type": "full",
+        "match": "NETFLIX.COM",
+        "category": "Movie Rentals & Streaming",
+        "quarter": "auto"
+    },
+    {
         "type": "prefix",
         "match": "NOAHMOBILEAPP",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "PANERA BREAD",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
@@ -99,6 +161,12 @@
     {
         "type": "full",
         "match": "Subway 56406",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "STARBUCKS",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
