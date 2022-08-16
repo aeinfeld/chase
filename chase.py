@@ -291,12 +291,12 @@ def get_missing_transactions(chase_transactions, spreadsheet_transactions):
   return final_missing_transactions
 
 
-def add_transactions_to_spreadsheet(config_data, service, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications):
+def add_transactions_to_spreadsheet(config_data, service, sheet_id, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications):
   requests = []
   for transaction_index, transaction in enumerate(transactions_to_add):
     row_number = determine_row_number_for_transaction(transaction, chase_transactions, spreadsheet_transactions)
     row_number += transaction_index  # Take into account rows we've already added
-    requests += get_spreadsheet_requests_for_transaction(config_data, service, transaction, row_number, classifications)
+    requests += get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, classifications)
 
   body = {
     'requests': requests,
@@ -319,11 +319,9 @@ def determine_row_number_for_transaction(transaction, chase_transactions, spread
   return row_number
 
 
-def get_spreadsheet_requests_for_transaction(config_data, service, transaction, row_number, classifications):
+def get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, classifications):
   transaction_date, amount, description = transaction
   classification = Classification.find(classifications, description)
-
-  sheet_id = get_sheet_id(config_data, service)
 
   row_data = [
     {
@@ -468,12 +466,13 @@ def main():
   chase_transactions = get_chase_csv_transactions(chase_csv_filename)
 
   service = get_sheets_service()
+  sheet_id = get_sheet_id(config_data, service)
   spreadsheet_transactions = get_spreadsheet_transactions(config_data, service)
 
   transactions_to_add = get_missing_transactions(chase_transactions, spreadsheet_transactions)
   if transactions_to_add:
     print('Adding %d new transactions' % len(transactions_to_add))
-    add_transactions_to_spreadsheet(config_data, service, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications)
+    add_transactions_to_spreadsheet(config_data, service, sheet_id, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications)
     print('Success! Oldest added day is: %s' % get_oldest_transaction_day(transactions_to_add).strftime('%B %-d, %Y'))
   else:
     print('No new transactions to add')
