@@ -7,6 +7,13 @@
     },
     {
         "type": "full",
+        "match": "SQ *BALBOA ICE CREAM",
+        "category": "Eating Out/Take Out",
+        "subcategory": "Desserts and Snacks",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "BEEP`S BURGERS-SF",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -26,6 +33,12 @@
     {
         "type": "full",
         "match": "BWW DALY CITY 424",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "CALIBURSF_1",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
@@ -81,9 +94,21 @@
         "quarter": "auto"
     },
     {
+        "type": "prefix",
+        "match": "LA PETITE BALEEN",
+        "category": "Baby Classes/Events (Mara)",
+        "quarter": "auto"
+    },
+    {
         "type": "full",
         "match": "SQ *THE LITTLE CHIHUAHUA",
         "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "THE LITTLE GYM MILLBRAE",
+        "category": "Baby Classes/Events (Mara)",
         "quarter": "auto"
     },
     {
@@ -135,6 +160,12 @@
         "quarter": "auto"
     },
     {
+        "type": "full",
+        "match": "TST* NOTHING BUNDT CAKES",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
         "type": "prefix",
         "match": "PANERA BREAD",
         "category": "Eating Out/Take Out",
@@ -153,6 +184,12 @@
         "quarter": "auto"
     },
     {
+        "type": "full",
+        "match": "RIN'S THAI",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
         "type": "prefix",
         "match": "SAFEWAY",
         "category": "Grocery",
@@ -168,6 +205,12 @@
         "type": "prefix",
         "match": "STARBUCKS",
         "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "TWIN PEAKS AUTO CARE",
+        "category": "Car- Gas",
         "quarter": "auto"
     },
     {
