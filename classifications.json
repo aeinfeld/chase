@@ -26,6 +26,12 @@
     },
     {
         "type": "full",
+        "match": "BURRITO LOCO.",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "BURSA RESTAURANT INC",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -64,6 +70,12 @@
     },
     {
         "type": "full",
+        "match": "EMMYS SPAGHETTI SHACK",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "FASTRAK CSC",
         "category": "Car- Tolls",
         "quarter": "auto"
@@ -85,6 +97,18 @@
         "type": "prefix",
         "match": "HLU*Hulu",
         "category": "Movie Rentals & Streaming",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "LOVEANDSAN* IKES - SAN",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "INGLESIDE VALERO",
+        "category": "Car- Gas",
         "quarter": "auto"
     },
     {
@@ -114,6 +138,12 @@
     {
         "type": "full",
         "match": "LITTLE ORIGINAL JOES",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "TST* LITTLE ORIGINAL JOE'",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
@@ -211,6 +241,12 @@
         "type": "full",
         "match": "TWIN PEAKS AUTO CARE",
         "category": "Car- Gas",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "UBER TRIP",
+        "category": "Taxis/Ubers",
         "quarter": "auto"
     },
     {
