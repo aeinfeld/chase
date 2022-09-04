@@ -70,6 +70,13 @@
     },
     {
         "type": "full",
+        "match": "DD *PEETSCOFFEE",
+        "category": "Eating Out/Take Out",
+        "subcategory": "Delivery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "EMMYS SPAGHETTI SHACK",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -235,6 +242,12 @@
         "type": "prefix",
         "match": "STARBUCKS",
         "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "TCB*MTA METER MTA P",
+        "category": "Car- Parking",
         "quarter": "auto"
     },
     {
