@@ -19,6 +19,12 @@
         "quarter": "auto"
     },
     {
+        "type": "full",
+        "match": "BULLSHEAD RESTAURANT",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
         "type": "prefix",
         "match": "BURGER KING",
         "category": "Eating Out/Take Out",
@@ -203,6 +209,12 @@
         "quarter": "auto"
     },
     {
+        "type": "full",
+        "match": "TST* Novy Restaurant",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
         "type": "prefix",
         "match": "PANERA BREAD",
         "category": "Eating Out/Take Out",
@@ -272,6 +284,12 @@
         "type": "full",
         "match": "WIN GARDEN",
         "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "WHOLEFDS OCN #10432",
+        "category": "Grocery",
         "quarter": "auto"
     }
 ]
