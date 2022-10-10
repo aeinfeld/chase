@@ -260,6 +260,32 @@ def get_spreadsheet_transactions(config_data, service):
   return entries
 
 
+def get_spreadsheet_data_validations(config_data, service):
+  sheet = service.spreadsheets()
+  range_to_fetch = '%s!D2:E' % config_data.sheet_name
+  result = sheet.get(spreadsheetId=config_data.spreadsheet_id, ranges=range_to_fetch, fields='*', includeGridData=True).execute()
+
+  assert len(result['sheets']) == 1  # We only fetched one sheet
+  sheet_result = result['sheets'][0]
+  assert len(sheet_result['data']) == 1  # We only fetched one range
+  range_result = sheet_result['data'][0]
+
+  newest_quarters_data_validation = None
+  data_validation_by_quarter = {}
+  for row in range_result['rowData']:
+    row_values = row.get('values', [])
+    if len(row_values) >= 1:  # This needs to have at least a year/quarter cell to be useful
+      if newest_quarters_data_validation is None and 'dataValidation' in row_values[0]:
+        newest_quarters_data_validation = row_values[0]['dataValidation']
+
+      if len(row_values) >= 2 and 'dataValidation' in row_values[1]:
+        quarter = row_values[0].get('effectiveValue', {}).get('stringValue')
+        if quarter and quarter not in data_validation_by_quarter:
+          data_validation_by_quarter[quarter] = row_values[1]['dataValidation']
+
+  return newest_quarters_data_validation, data_validation_by_quarter
+
+
 def get_transaction_set_without_amount(transactions):
   set_without_amount = set()
   for transaction_date, amount, description in transactions:
@@ -291,12 +317,12 @@ def get_missing_transactions(chase_transactions, spreadsheet_transactions):
   return final_missing_transactions
 
 
-def add_transactions_to_spreadsheet(config_data, service, sheet_id, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications):
+def add_transactions_to_spreadsheet(config_data, service, sheet_id, transactions_to_add, chase_transactions, spreadsheet_transactions, newest_quarters_data_validation, data_validation_by_quarter, classifications):
   requests = []
   for transaction_index, transaction in enumerate(transactions_to_add):
     row_number = determine_row_number_for_transaction(transaction, chase_transactions, spreadsheet_transactions)
     row_number += transaction_index  # Take into account rows we've already added
-    requests += get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, classifications)
+    requests += get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, newest_quarters_data_validation, data_validation_by_quarter, classifications)
 
   body = {
     'requests': requests,
@@ -319,7 +345,7 @@ def determine_row_number_for_transaction(transaction, chase_transactions, spread
   return row_number
 
 
-def get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, classifications):
+def get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, newest_quarters_data_validation, data_validation_by_quarter, classifications):
   transaction_date, amount, description = transaction
   classification = Classification.find(classifications, description)
 
@@ -375,7 +401,7 @@ def get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, 
     else:
       quarter_value = ''
 
-    row_data.append({
+    data_to_append_for_quarter = {
       'userEnteredValue': {
         'stringValue': quarter_value,
       },
@@ -386,8 +412,11 @@ def get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, 
           'bold': True,  # Bold to make it clear what is "new"
         },
       },
-    })
-    row_data.append({
+      'dataValidation': newest_quarters_data_validation,
+    }
+    row_data.append(data_to_append_for_quarter)
+
+    data_to_append_for_category = {
       'userEnteredValue': {
         'stringValue': classification.category,
       },
@@ -398,7 +427,11 @@ def get_spreadsheet_requests_for_transaction(sheet_id, transaction, row_number, 
           'bold': True,  # Bold to make it clear what is "new"
         },
       },
-    })
+    }
+    if quarter_value and quarter_value in data_validation_by_quarter:
+      data_to_append_for_category['dataValidation'] = data_validation_by_quarter[quarter_value]
+    row_data.append(data_to_append_for_category)
+
     if classification.subcategory:
       row_data.append({
         'userEnteredValue': {
@@ -468,11 +501,22 @@ def main():
   service = get_sheets_service()
   sheet_id = get_sheet_id(config_data, service)
   spreadsheet_transactions = get_spreadsheet_transactions(config_data, service)
+  newest_quarters_data_validation, data_validation_by_quarter = get_spreadsheet_data_validations(config_data, service)
 
   transactions_to_add = get_missing_transactions(chase_transactions, spreadsheet_transactions)
   if transactions_to_add:
     print('Adding %d new transactions' % len(transactions_to_add))
-    add_transactions_to_spreadsheet(config_data, service, sheet_id, transactions_to_add, chase_transactions, spreadsheet_transactions, classifications)
+    add_transactions_to_spreadsheet(
+      config_data,
+      service,
+      sheet_id,
+      transactions_to_add,
+      chase_transactions,
+      spreadsheet_transactions,
+      newest_quarters_data_validation,
+      data_validation_by_quarter,
+      classifications,
+    )
     print('Success! Oldest added day is: %s' % get_oldest_transaction_day(transactions_to_add).strftime('%B %-d, %Y'))
   else:
     print('No new transactions to add')
