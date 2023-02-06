@@ -7,6 +7,12 @@
     },
     {
         "type": "full",
+        "match": "CLR*9Round",
+        "category": "Gym (Erica)",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "SQ *BALBOA ICE CREAM",
         "category": "Eating Out/Take Out",
         "subcategory": "Desserts and Snacks",
@@ -91,6 +97,12 @@
         "type": "full",
         "match": "FASTRAK CSC",
         "category": "Car- Tolls",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "GAP ONLINE",
+        "category": "Miscellaneous",
         "quarter": "auto"
     },
     {
@@ -222,6 +234,12 @@
     },
     {
         "type": "full",
+        "match": "Peacock B15DF PremPlus",
+        "category": "Movie Rentals & Streaming",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "PEETSCOFFEE/MIGHTYLEAF",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -260,6 +278,12 @@
         "type": "full",
         "match": "TCB*MTA METER MTA P",
         "category": "Car- Parking",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "TRADER JOE'S",
+        "category": "Grocery",
         "quarter": "auto"
     },
     {
