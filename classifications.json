@@ -13,6 +13,12 @@
     },
     {
         "type": "full",
+        "match": "ATT*BILL PAYMENT",
+        "category": "House- Internet",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "SQ *BALBOA ICE CREAM",
         "category": "Eating Out/Take Out",
         "subcategory": "Desserts and Snacks",
@@ -138,6 +144,12 @@
     },
     {
         "type": "full",
+        "match": "IVY* SESSION PAYMENT",
+        "category": "Medical & Vision Expenses (after FSA)",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "JOES WESTSIDE LP",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -228,7 +240,19 @@
     },
     {
         "type": "prefix",
+        "match": "OLIVE GARDEN",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
         "match": "PANERA BREAD",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "PAPA JOHN'S",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
@@ -241,6 +265,18 @@
     {
         "type": "full",
         "match": "PEETSCOFFEE/MIGHTYLEAF",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "PHILZ COFFEE",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "SQ *PHILZ COFFEE",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
@@ -260,6 +296,18 @@
         "type": "prefix",
         "match": "SAFEWAY",
         "category": "Grocery",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "SHAKE SHACK",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "SQ *SF BAY PEDIATRICS",
+        "category": "Medical & Vision Expenses (after FSA)",
         "quarter": "auto"
     },
     {
@@ -287,6 +335,12 @@
         "quarter": "auto"
     },
     {
+        "type": "prefix",
+        "match": "TRADER JOE S",
+        "category": "Grocery",
+        "quarter": "auto"
+    },
+    {
         "type": "full",
         "match": "TWIN PEAKS AUTO CARE",
         "category": "Car- Gas",
@@ -296,6 +350,12 @@
         "type": "full",
         "match": "UBER TRIP",
         "category": "Taxis/Ubers",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "VZWRLSS*PRPAY AUTOPAY",
+        "category": "Cell Service",
         "quarter": "auto"
     },
     {
