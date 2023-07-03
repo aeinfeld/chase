@@ -257,8 +257,8 @@
         "quarter": "auto"
     },
     {
-        "type": "full",
-        "match": "Peacock B15DF PremPlus",
+        "type": "prefix",
+        "match": "Peacock",
         "category": "Movie Rentals & Streaming",
         "quarter": "auto"
     },
