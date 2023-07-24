@@ -32,6 +32,12 @@
     },
     {
         "type": "full",
+        "match": "BEEZ KNEEZ SKIN CARE",
+        "category": "Grooming (Erica)",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "BULLSHEAD RESTAURANT",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -68,6 +74,12 @@
     },
     {
         "type": "prefix",
+        "match": "CHEVRON",
+        "category": "Car- Gas",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
         "match": "CHIPOTLE",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -91,6 +103,12 @@
         "match": "DD *PEETSCOFFEE",
         "category": "Eating Out/Take Out",
         "subcategory": "Delivery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "EHS PILATES",
+        "category": "Gym (Erica)",
         "quarter": "auto"
     },
     {
@@ -312,13 +330,19 @@
     },
     {
         "type": "full",
-        "match": "Subway 56406",
-        "category": "Eating Out/Take Out",
+        "match": "SNYCED PILATES",
+        "category": "Gym (Erica)",
         "quarter": "auto"
     },
     {
         "type": "prefix",
         "match": "STARBUCKS",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "Subway 56406",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
@@ -344,6 +368,12 @@
         "type": "full",
         "match": "TWIN PEAKS AUTO CARE",
         "category": "Car- Gas",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "SQ *TUTU SCHOOL WEST PORT",
+        "category": "Baby Classes/Events (Mara)",
         "quarter": "auto"
     },
     {
