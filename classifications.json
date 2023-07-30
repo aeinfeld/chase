@@ -239,6 +239,12 @@
         "quarter": "auto"
     },
     {
+        "type": "full",
+        "match": "Netflix",
+        "category": "Movie Rentals & Streaming",
+        "quarter": "auto"
+    },
+    {
         "type": "prefix",
         "match": "NOAHMOBILEAPP",
         "category": "Eating Out/Take Out",
