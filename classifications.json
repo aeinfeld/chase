@@ -186,12 +186,6 @@
     },
     {
         "type": "full",
-        "match": "THE LITTLE GYM MILLBRAE",
-        "category": "Baby Classes/Events (Mara)",
-        "quarter": "auto"
-    },
-    {
-        "type": "full",
         "match": "LITTLE ORIGINAL JOES",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
