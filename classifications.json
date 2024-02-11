@@ -372,6 +372,12 @@
     },
     {
         "type": "full",
+        "match": "SXM*SIRIUSXM.COM/ACCT",
+        "category": "SiriusXM",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "SQ *TUTU SCHOOL WEST PORT",
         "category": "Baby Classes/Events (Mara)",
         "quarter": "auto"
@@ -391,6 +397,12 @@
     {
         "type": "prefix",
         "match": "WENDYS",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "prefix",
+        "match": "WENDY'S",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
