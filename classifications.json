@@ -198,6 +198,12 @@
     },
     {
         "type": "full",
+        "match": "LUCKY #755 SAN FRAN",
+        "category": "Grocery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "LUPA",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -386,6 +392,12 @@
         "type": "full",
         "match": "UBER TRIP",
         "category": "Taxis/Ubers",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "UNLEASHED BRANDS",
+        "category": "Baby Classes/Events (Lil)",
         "quarter": "auto"
     },
     {
