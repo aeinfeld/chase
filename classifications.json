@@ -32,6 +32,12 @@
     },
     {
         "type": "full",
+        "match": "TST* BEEP'S BURGERS",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "BEEZ KNEEZ SKIN CARE",
         "category": "Self Care (Erica)",
         "quarter": "auto"
@@ -426,7 +432,19 @@
     },
     {
         "type": "full",
+        "match": "WHOLEFDS NOE 10379",
+        "category": "Grocery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "WHOLEFDS OCN #10432",
+        "category": "Grocery",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "WHOLEFDS STO#10717",
         "category": "Grocery",
         "quarter": "auto"
     }
