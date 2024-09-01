@@ -186,6 +186,12 @@
     },
     {
         "type": "full",
+        "match": "SQ *LADLE & LEAF",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
         "match": "SQ *THE LITTLE CHIHUAHUA",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
@@ -193,6 +199,12 @@
     {
         "type": "full",
         "match": "LITTLE ORIGINAL JOES",
+        "category": "Eating Out/Take Out",
+        "quarter": "auto"
+    },
+    {
+        "type": "full",
+        "match": "TST*LITTLE ORIGINAL JOES",
         "category": "Eating Out/Take Out",
         "quarter": "auto"
     },
