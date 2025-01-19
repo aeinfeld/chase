@@ -181,7 +181,7 @@
     {
         "type": "prefix",
         "match": "LA PETITE BALEEN",
-        "category": "Baby Classes/Events (Mara)",
+        "category": "Activities- Weekend (Lillian)",
         "quarter": "auto"
     },
     {
@@ -403,7 +403,7 @@
     {
         "type": "full",
         "match": "SQ *TUTU SCHOOL WEST PORT",
-        "category": "Baby Classes/Events (Mara)",
+        "category": "Activities- Weekend (Mara)",
         "quarter": "auto"
     },
     {
@@ -415,7 +415,7 @@
     {
         "type": "full",
         "match": "UNLEASHED BRANDS",
-        "category": "Baby Classes/Events (Lil)",
+        "category": "Activities- Weekend (Lillian)",
         "quarter": "auto"
     },
     {
