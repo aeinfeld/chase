@@ -91,6 +91,13 @@
         "quarter": "auto"
     },
     {
+        "type": "prefix",
+        "match": "COOKUNITY INC",
+        "category": "Eating Out/Take Out",
+        "subcategory": "Delivery",
+        "quarter": "auto"
+    },
+    {
         "type": "full",
         "match": "DD DOORDASH SUSIECAKE",
         "category": "Eating Out/Take Out",
